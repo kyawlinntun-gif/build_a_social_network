@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
-{    
+{
+
     /**
      * login
      *
@@ -23,8 +24,7 @@ class LoginController extends Controller
             'login_password' => 'required'
         ]);
 
-        if(Auth::attempt(['email' => $request->login_email, 'password' => $request->login_password]))
-        {
+        if (Auth::attempt(['email' => $request->login_email, 'password' => $request->login_password])) {
             return redirect('/dashboard');
         }
         // session::flash('unsuccess', 'Your email address or password is incorrect!');

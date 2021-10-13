@@ -20,7 +20,7 @@
                     {{ Form::bsPassword('password', ['label' => 'Your Password']) }}
                     @include('messages.errors.password')
                     {{ Form::bsPassword('confirm_password', ['label' => 'Confirm Password']) }}
-                    @include('messages\errors\confirm_password')
+                    @include('messages.errors.confirm_password')
                     {{ Form::submit('Submit', ['class' => 'btn btn-primary d-block mt-2']) }}
                 {{ Form::close() }}
 
@@ -29,7 +29,7 @@
             <div class="col-md-6">
 
                 <h1>Sign In</h1>
-                @include('messages\errors\unsuccess')
+                @include('messages.errors.unsuccess')
                 {{ Form::open(['url' => 'login', 'method' => 'post']) }}
                     {{ Form::bsText('login_email', '', ['label' => 'Your E-mail']) }}
                     {{-- @include('messages\errors\email') --}}

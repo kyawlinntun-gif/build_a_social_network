@@ -78,7 +78,7 @@ class AccountController extends Controller
             'name' => 'required',
         ]);
 
-        if($request->file('image')){
+        if ($request->file('image')) {
             $user_id = Auth::id();
 
             // Get filename with extension

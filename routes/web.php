@@ -20,7 +20,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'PostController@dashboard')->name('dashboard')->middleware('auth');
 
 Route::resource('/post', 'PostController')->except('update');
-Route::post('/post/update', 'PostController@update')->name('post.update'); 
+Route::post('/post/update', 'PostController@update')->name('post.update');
 
 Route::resource('/account', 'AccountController');
 

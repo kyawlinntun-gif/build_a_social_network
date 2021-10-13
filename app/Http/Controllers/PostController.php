@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
-{    
+{
+
     public function __construct()
     {
         return $this->middleware('auth');
@@ -63,7 +64,7 @@ class PostController extends Controller
         //     $post
         // ]);
 
-        if(Gate::denies('update', $post)){
+        if (Gate::denies('update', $post)) {
             return response([
                 'message' => "You can't edit this post!"
             ]);
@@ -83,7 +84,7 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        if(Gate::denies('delete', $post)){
+        if (Gate::denies('delete', $post)) {
             return redirect()->route('dashboard')->with('error', "You don't have permission to delete this posts!");
         }
         // $this->authorize('update', $post);
@@ -104,25 +105,20 @@ class PostController extends Controller
         $user = Auth::user();
         $post = Post::find($postId);
 
-        if(!($post))
-        {
+        if (!($post)) {
             return null;
         }
 
         $is_like = $user->likes()->where('post_id', $postId)->first();
-        if($is_like)
-        {
-            if($like == $is_like->like) // boolean == tinyInt(boolean)
-            {
+        if ($is_like) {
+            if ($like == $is_like->like) { // boolean == tinyInt(boolean)
                 $is_like->delete();
                 return response([
                     'remove' => [
                         $is_like
                     ]
                 ]);
-            }
-            else
-            {
+            } else {
                 $is_like->like = $like;
                 $is_like->update();
                 return response([
@@ -131,10 +127,7 @@ class PostController extends Controller
                     ]
                 ]);
             }
-            
-        }
-        else
-        {
+        } else {
             $newlike = new Like;
             $newlike->post_id = $postId;
             $newlike->like = $like;
